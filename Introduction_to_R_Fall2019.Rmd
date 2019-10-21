@@ -113,16 +113,16 @@ Exercise 5: What is the difference between the two blocks and what does it do? H
 
 ```{r}
 setwd("/Users/ursus03/Desktop/GordonClass/")
-Pima<-read.csv(Pima.csv)
+Pima <- read.csv(Pima.csv)
 ```
 
 ```{r}
 setwd("/Users/gordoncuster/Downloads/")
-Pima<-read.csv("Pima.csv")
+Pima <- read.csv("Pima.csv")
 ```
 Exercise 6: A final consideration for reading files in is to specify the entire path to the file. This is often the safest way to operate because it doesn't matter where your working directory is set. By doing so, you can find a file no matter where it is on your computer. Run the code below (lines 124-126), which is an example of how to specify the entire pathway to a file on my desktop. Copy the error message to your lab handout in the exercise 5 answer slot. 
 ```{r}
-Pima<-read.csv("/Users/gordoncuster/Desktop/pima.csv")
+Pima <- read.csv("/Users/gordoncuster/Desktop/pima.csv")
 ```
 Next, insert a new chunk below and write the correct code to read in the Pima.csv file using the entire pathway to your folder on your Desktop. Run the code to see if there are no error messages and then copy the code to your lab handout in the exercise 6 location. 
 
@@ -157,14 +157,14 @@ Exercise 9: Convert the Pima data.frame to a matrix, using the code below, and t
 
 ```{r}
 #The code as.matrix will convert your dataframe to a matrix
-Pima<-as.matrix(Pima)
+Pima <- as.matrix(Pima)
 str(Pima)
 ```
 
 ```{r}
 #The code as.data.frame will convert your matrix back to a data frame again 
-Pima<-data.frame(Pima)
-Pima$test<-as.factor(Pima$test)
+Pima <- data.frame(Pima)
+Pima$test <- as.factor(Pima$test)
 str(Pima)
 ```
 After you have converted the Pima matrix back to a data.frame check its structure again. You will see that each variable has a data type associated with it. In our Pima data.frame we have 8 numeric (num) and 1 factor (factor). What do some of these things mean (character vs. numeric vs. factor)? Numeric and integers are ways of encoding numeric data. The big difference is that integers can not have decimals while numeric variables can. Factors are a good way of including categorical data. As you can see the test column is a factor with two levels. The levels correspond to a positive or negative test for diabetes, with 1 being positive and 0 negative.
@@ -176,24 +176,27 @@ You can also create your own data frames and fill them with values of your choic
 numbs <- c(2, 3, 5, 7, 9) 
 alphas <- c("aa", "bb", "cc", "dd", "ee") 
 #the vectors should be the same length
-combined<-data.frame(numbs, alphas)
+combined <- data.frame(numbs, alphas)
 combined
 ```
 As you can see the combined data frame consists of two columns, the first numbers, and the second, alphabetic characters. Look at the types of data in each column. The numbers and dbl (another name for numeric), and the alphas are a factor. Next we will use the seq() and rep() functions to program a larger data frame. 
 
 ```{r}
 #in the first example we create a small dataframe with two columns and we specify the values we want in each column
-combined2 <- data.frame(numbs=c(2, 3, 5, 7, 9), alphas=c("aa","bb","cc","dd", "ee"))
+combined2 <- data.frame(numbs = c(2, 3, 5, 7, 9), alphas = c("aa","bb","cc","dd", "ee"))
 #you can see the produce looks exactly like the on you made above and essentialy combines the three steps above to create the data frame
 combined2
 
 #Now let's use the seq() and rep() functions to programe a larger dataframe.
-combined3 <- data.frame(numbs=seq(from = 1, to = 100, by = 4), alphas=(rep(c("aa", "bb", "cc", "dd", "ee"), times= 5)))
+combined3 <- data.frame(numbs=seq(from = 1, to = 100, by = 4), alphas = (rep(c("aa", "bb", "cc", "dd", "ee"), times = 5)))
 combined3
 ```
 This may look complicated but we can break it apart and make sense of it in a piece-wise manner. The first section of the code, "numbs=seq(from = 1, to = 100, by = 4)", creates the first column named "numbs". To do this we say we want a sequence that starts at 1 and goes to 100. The by argument says we want to count by 4s. Simple enough right? Now for the second part. "alphas=(rep(c("aa", "bb", "cc", "dd", "ee"), times= 5))", again we want a column named alphas. However, this time we utilize the rep() function, which will repeat whatever you want however many of times you want. If you are confused check the help page. Inside of the rep command "(c("aa", "bb", "cc", "dd", "ee"), times= 5))" we are saying we want a column of letters but only want "aa", "bb", "cc", "dd" and "ee" to appear. We want it to repeat 5 times.  
 
 Exercise 10: Below create a data frame called "combined4" anyway you would like and copy your code to your word document.
+```{r}
+
+```
 
 #Working with data
 In the code below we introduce an easy way to pull out a single column from a data set. Run the code below and take a look at the resulting figures. As you will see, the "$" operator allow you to select a single column. We also see how to plot information and to change labels. Keep this in mind for a later exercise.
@@ -216,11 +219,11 @@ Another way to do this would be to make a vector of the column names you wish to
 unique(colnames(Pima))
 #you could also do this by using the names() function
 #Let's now only pull out the columns "glucose", "diabetes", and "bmi". In order to do so lets make a vector containing these values.
-columns_to_keep<-c("glucose", "diabetes","bmi")
-subset_Pima<-Pima[,colnames(Pima) %in% columns_to_keep]
-str(subset_Pima)
+columns_to_keep <- c("glucose", "diabetes","bmi")
+subset_Pima_2 <- Pima[,colnames(Pima) %in% columns_to_keep]
+str(subset_Pima_2)
 ```
-Exercise 12: Can you interpret what is going on in the "subset_Pima<-Pima[,colnames(Pima) %in% columns_to_keep]" line of code? Try to put it into plain English. Hint %in% reads as "found in". 
+Exercise 12: Can you interpret what is going on in the "subset_Pima_2 <- Pima[,colnames(Pima) %in% columns_to_keep]" line of code? Try to put it into plain English. Hint %in% reads as "found in". 
 
 Exercise 13: Insert a new chunk of code (don't remember how do do this, see line 81) and write a code that will pull only the first two rows of the columns "age" and "triceps". Copy your final code to your lab handout in the exercise 11 location.
 
@@ -229,7 +232,8 @@ As was shown earlier R can act as a calculator. Whats even better is that math y
 mean(Pima$diastolic)
 sd(Pima$diastolic)
 ```
-Exercise 14: Calculate the mean and standard deviation individually for each of the three columns of "subset_Pima". Record your answer in your handout.
+
+Exercise 14: Calculate the mean and standard deviation individually for each of the three columns of "subset_Pima_2". Record your answer in your handout.
 ```{r}
 
 ```
@@ -241,7 +245,7 @@ Exercise 15: You have the Metadata.csv sheet in your  folder. Next, read it into
 First we need to create a column named Soil. This column will tell us whether the sample was collected from the bulk or rhizosphere component. 
 ```{r}
 #look up the command substr() in the seach bar of the help tab in bottom right pane for more info on this command. Using the command below, you will create a new column named Soil (metadata$Soil) at the end of your current dataset metadata. The column will be created based on the 4th character (start = 4, stop = 4) of the values in your Sample_ID column (metadata$Sample_ID). 
-metadata$Soil<-substr(metadata$Sample_ID, start = 4, stop = 4)
+metadata$Soil <- substr(metadata$Sample_ID, start = 4, stop = 4)
 #Using the code below you can check to see if the column Soil was added, and what the values are, which should be either A or B.
 metadata
 ```
@@ -251,7 +255,7 @@ metadata
 index <- c("A", "B")
 #Then we identify the values that we wish to insert in the place of the "index", which are Rhizosphere for A and Bulk for B.
 values <- c("Rhizosphere", "Bulk")
-metadata$Soil<- values[match(metadata$Soil, index)]
+metadata$Soil <- values[match(metadata$Soil, index)]
 #And again, we can check to see if the column Soil was added, and what the values are now, which should be either Rhizosphere or Bulk.
 metadata
 ```
@@ -277,7 +281,20 @@ Lastly, suppose you are working with a huge data set. For many of you this will 
 Exercise 18: Save your working environment for use at a later date. Empty your environment by clicking on the "broom" symbol in the upper right pane under the environment tab and reload your saved data to make sure you are comfortable with this skill. For Reloading: click the "open folder" symbol in the upper right pane under the environment tab.
 
 #Final exercise
-Using what you have seen above, create a histogram of the column called "pH" from the metadata. Change the title to "pH of all sites", the X-axis to "pH", and the Y-axis to "number of sites". Calculate the mean and standard deviation for this column as well. Include the code you used in your handout under the final exercise heading and copy the histogram you made to the Word Document.
+Using what you have learned above, read in the data set called "Soil_4120.csv" and create a scatterplot of soil pH by depth. Color the points by on hoirzon. Provide a title and label your axes. 
+
+Karen, would something like this work? I think i would provide some hints on making a color vector and also provide the code for the legend. 
+```{r}
+soil_data<-read.csv("/Users/gordoncuster/Desktop/Tutorial_Karens_Class/Introduction_to_R_Soils/Soil_4120.csv")
+
+cols<-c("blueviolet", "blueviolet", "chocolate2", "chocolate2","turquoise1", "turquoise1", "olivedrab2", "olivedrab2", "coral", "coral", "burlywood4", "burlywood4" )
+plot(soil_data$Mean.pH, soil_data$depth, ylim=rev(range(soil_data$depth)), col=cols, ylab="Soil depth", xlab="Soil pH")
+lines(soil_data$Mean.pH, soil_data$depth)
+##I think i would provide this code for the legend. It was kind of a bear to get to print out how i wanted it. 
+legend(x = 5.4, y = 80, unique(soil_data$horizon), col = c("blueviolet",  "chocolate2", "turquoise1", "olivedrab2",  "coral", "burlywood4"), pch = 1)
+
+```
+
 
 Citations and Resources:
 1: https://www.r-project.org/ 
